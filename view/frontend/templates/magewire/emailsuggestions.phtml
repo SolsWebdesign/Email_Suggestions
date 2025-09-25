@@ -4,24 +4,39 @@ declare(strict_types=1);
 use FriendsOfHyva\EmailSuggestions\Magewire\EmailSuggestions;
 /** @var EmailSuggestions $magewire */
 ?>
-
-<div xmlns="http://www.w3.org/1999/html">
-    <input type="text" wire:model.defer="fullname" placeholder="Your name" /><br />
-    <input type="email" wire:model.defer="email" placeholder="Your email" /><br />
-    <textarea wire:model.defer="message" placeholder="Your message..."></textarea>
-    <button type="button" wire:click="sendMessage">
+<div x-data="emailHelper">
+    <input type="text" x-model.defer="fullname" placeholder="Your name" /><br />
+    <input type="email" :value="customEmail" @change="checkEmail" @blur="checkEmail" placeholder="Your email" /><br />
+    <div @click="correctEmail" id="emailSuggestion"></div><br />
+    <textarea x-model.defer="message" placeholder="Your message..."></textarea>
+    <button type="button" @click="sendMessage">
         <?= __('Send Message') ?>
     </button>
     <script>
-        const suggestion = EmailSpellChecker.run({
-            email: 'test@myltisafepay.com',
-            domains: [...EmailSpellChecker.POPULAR_DOMAINS, ...<?= $magewire->domains ?>]
-        });
-
-        if (suggestion) {
-            console.log(suggestion.address);
-            console.log(suggestion.domain);
-            console.log(suggestion.full);
+        function emailHelper() {
+            return {
+                fullname: '',
+                customEmail: '',
+                message: '',
+                finalEmailSuggestion: '',
+                emailSuggestion: document.getElementById("emailSuggestion"),
+                customDomains: JSON.parse('<?= $magewire->domains ?>'),
+                checkEmail(event) {
+                    const emailValue = event.target.value;
+                    const suggestion = EmailSpellChecker.run({
+                        email: emailValue,
+                        domains: [...EmailSpellChecker.POPULAR_DOMAINS, ...this.customDomains]
+                    });
+                    if (suggestion) {
+                        emailSuggestion.innerHTML = "Did you mean <span style=\"border-bottom: 1px solid;\">" + suggestion.full + "</span>?";
+                        this.finalEmailSuggestion = suggestion.full;
+                    }
+                },
+                correctEmail() {
+                    this.customEmail = this.finalEmailSuggestion;
+                    this.emailSuggestion.innerHTML = "";
+                }
+            }
         }
     </script>
 </div>
