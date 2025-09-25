@@ -4,6 +4,7 @@ declare(strict_types=1);
 use FriendsOfHyva\EmailSuggestions\Magewire\EmailSuggestions;
 /** @var EmailSuggestions $magewire */
 ?>
+
 <div xmlns="http://www.w3.org/1999/html">
     <input type="text" wire:model.defer="fullname" placeholder="Your name" /><br />
     <input type="email" wire:model.defer="email" placeholder="Your email" /><br />
@@ -11,4 +12,10 @@ use FriendsOfHyva\EmailSuggestions\Magewire\EmailSuggestions;
     <button type="button" wire:click="sendMessage">
         <?= __('Send Message') ?>
     </button>
+    <script>
+        const suggestion = EmailSpellChecker.run({
+            email: 'test@test.com',
+            domains: [...EmailSpellChecker.POPULAR_DOMAINS, ...<?= $magewire->domains ?>]
+        });
+    </script>
 </div>

@@ -5,11 +5,12 @@
         <script src="FriendsOfHyva_EmailSuggestions::js/email-spell-checker.umd.min.js"/>
     </head>
     <body>
+        <referenceBlock name="hero" remove="true"/>
+        <referenceBlock name="content-1" remove="true"/>
+        <referenceBlock name="content-2" remove="true"/>
+        <referenceBlock name="slider-1" remove="true"/>
+        <referenceBlock name="slider-2" remove="true"/>
         <referenceContainer name="content">
-
-            <block name="standalone-script" template="FriendsOfHyva_EmailSuggestions::examplescript.phtml"/>
-
-
             <block name="example-email-suggestions" template="FriendsOfHyva_EmailSuggestions::magewire/emailsuggestions.phtml">
                 <arguments>
                     <argument name="magewire" xsi:type="object">FriendsOfHyva\EmailSuggestions\Magewire\EmailSuggestions</argument>

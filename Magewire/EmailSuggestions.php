@@ -11,6 +11,8 @@ class EmailSuggestions extends Component
     public string $email = '';
     public string $message = '';
 
+    public string $domains = '["multisafepay.com", "hyva.io"]';
+
     public function sendMessage()
     {
         $fullname = trim($this->fullname);
@@ -34,14 +36,6 @@ class EmailSuggestions extends Component
             return false;
         }
 
-        // save the form
-        // either clean out the form by doing:
-        $this->fullname = '';
-        $this->message = '';
-        $this->email = '';
-        // or a redirect:
-        //$this->redirect('my/form/success');
-        // or even better, stay on the same page and use setTemplate:
-        //$this->setTemplate('FriendsOfHyva_EmailSuggestions::examplesent.phtml');
+        return true;
     }
 }
