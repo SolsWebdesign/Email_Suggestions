@@ -1,18 +1,7 @@
 <?php
 declare(strict_types=1);
 ?>
-<script src="https://cdn.jsdelivr.net/npm/@zootools/email-spell-checker@1.12.0/dist/index.min.js"></script>
 <script>
-    const suggestion = emailSpellChecker.run({
-        email: 'jorge@gmaik.co'
-    })
-
-    if (suggestion) {
-        // dev: user made a typo -- handle the suggestion.
-        // for example: show a message to fix the email.
-
-        console.log(suggestion.address); // jorge
-        console.log(suggestion.domain); // gmail.com
-        console.log(suggestion.full); // jorge@gmail.com
-    }
+    const suggestion = EmailSpellChecker.run({ email: 'jorge@gmaik.co' });
+    console.log(suggestion.full); // "jorge@gmail.com"
 </script>
