@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="friendsofhyva" translate="label" sortOrder="400">
+            <label>Friends Of Hyva</label>
+        </tab>
+        <section id="friendsofhyva" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="5">
+            <class>separator-top</class>
+            <label><![CDATA[Email Suggestions]]></label>
+            <tab>friendsofhyva</tab>
+            <resource>FriendsOfHyva_EmailSuggestions::configuration</resource>
+            <group id="emailchecker" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="1">
+                <label><![CDATA[Settings]]></label>
+                <field id="custom_domains" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Custom Domains]]></label>
+                    <config_path>friendsofhyva/emailchecker/custom_domains</config_path>
+                    <comment><![CDATA[Choose domains that should be added, comma separated values, e.g. test.com,example.com]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
