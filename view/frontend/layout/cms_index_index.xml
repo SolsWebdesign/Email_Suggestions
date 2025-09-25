@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block name="standalone-script" template="FriendsOfHyva_EmailSuggestions::examplescript.phtml"/>
+
+            <block name="example-email-suggestions" template="FriendsOfHyva_EmailSuggestions::magewire/emailsuggestions.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">FriendsOfHyva\EmailSuggestions\Magewire\EmailSuggestions</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
