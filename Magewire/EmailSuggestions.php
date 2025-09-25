@@ -13,7 +13,7 @@ class EmailSuggestions extends Component
     public string $fullname = '';
     public string $email = '';
     public string $message = '';
-    public string $domains = '["multisafepay.com", "hyva.io"]';
+    public string $domains = '';
 
     /**
      * @param ScopeConfigInterface $scopeConfig
@@ -50,16 +50,12 @@ class EmailSuggestions extends Component
         return true;
     }
 
-    public function getDomains()
+    public function boot(): void
     {
         $domains = $this->scopeConfig->getValue('friendsofhyva/emailchecker/custom_domains');
 
-        if (empty($domains)) {
-            return '';
+        if (!empty($domains)) {
+            $this->domains = json_encode(array_map('trim', explode(',', $domains)));
         }
-
-        $domainsArray = array_map('trim', explode(',', $domains));
-
-        return json_encode($domainsArray);
     }
 }

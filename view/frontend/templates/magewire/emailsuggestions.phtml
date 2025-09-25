@@ -14,8 +14,8 @@ use FriendsOfHyva\EmailSuggestions\Magewire\EmailSuggestions;
     </button>
     <script>
         const suggestion = EmailSpellChecker.run({
-            email: 'test@muultisafepay.com',
-            domains: [...EmailSpellChecker.POPULAR_DOMAINS, ...<?= $magewire->getDomains() ?>]
+            email: 'test@myltisafepay.com',
+            domains: [...EmailSpellChecker.POPULAR_DOMAINS, ...<?= $magewire->domains ?>]
         });
 
         if (suggestion) {
